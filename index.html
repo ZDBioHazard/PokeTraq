@@ -12,6 +12,9 @@
     <!-- Leaflet EasyButton -->
     <link rel="stylesheet" href="//unpkg.com/leaflet-easybutton@1.3.1/src/easy-button.css" />
     <script src="//unpkg.com/leaflet-easybutton@1.3.1/src/easy-button.js"></script>
+    <!-- Leaflet Locate Control -->
+    <link rel="stylesheet" href="//unpkg.com/leaflet.locatecontrol@0.55.0/dist/L.Control.Locate.min.css" />
+    <script src="//unpkg.com/leaflet.locatecontrol@0.55.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
     <style type="text/css">
         html, body, #map { margin: 0; padding: 0; width: 100vw; height: 100vh; }
@@ -27,7 +30,8 @@
     var points = L.layerGroup().addTo(map);
 
     // Automatically find the user's location on startup.
-    map.locate({ setView: true, maxZoom: 16 });
+    L.control.locate({ setView: 'untilPan', icon: 'fa fa-crosshairs', drawMarker: false,
+                       locateOptions: { maxZoom: 16 }}).addTo(map).start();
 
     // Create circles when the map is clicked on.
     map.on('click', function( ev ) {
