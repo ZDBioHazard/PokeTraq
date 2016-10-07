@@ -18,5 +18,8 @@
         L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map by <a href="http://openstreetmap.org">OpenStreetMap</a>',
             minZoom: 5, maxZoom: 17 })] });
+
+    // Automatically find the user's location on startup.
+    map.locate({ setView: true, maxZoom: 16 });
     </script>
 </body></html>
