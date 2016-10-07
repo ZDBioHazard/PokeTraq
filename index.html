@@ -3,6 +3,20 @@
     <title>Pok&eacute;Traq</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <script src="//unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+
+    <style type="text/css">
+        html, body, #map { margin: 0; padding: 0; width: 100vw; height: 100vh; }
+    </style>
 </head><body>
-    <p>There will be a program here eventually! :D</p>
+    <div id="map"></div>
+    <script>
+    // Create a Leaflet map using OpenStreetMap data.
+    var map = L.map('map', { center: [35.377, -119.008], zoom: 16, layers: [
+        L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map by <a href="http://openstreetmap.org">OpenStreetMap</a>',
+            minZoom: 5, maxZoom: 17 })] });
+    </script>
 </body></html>
