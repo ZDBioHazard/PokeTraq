@@ -18,6 +18,9 @@
 
     <style type="text/css">
         html, body, #map { margin: 0; padding: 0; width: 100vw; height: 100vh; }
+
+        .state-far { color: #F00; }
+        .state-near { color: #0F0; }
     </style>
 </head><body>
     <div id="map"></div>
@@ -29,6 +32,7 @@
             minZoom: 5, maxZoom: 17 })] });
     var points = L.layerGroup().addTo(map);
     var me = L.layerGroup().addTo(map);
+    var circle_color = '#0F0';
 
     // Automatically find the user's location on startup.
     L.control.locate({ setView: 'untilPan', icon: 'fa fa-crosshairs',
@@ -50,14 +54,36 @@
     map.on('click', function( ev ) {
         // TODO - Remove circles when clicking on the inner circle.
         // Sightings range.
-        L.circle(ev.latlng, { radius: 200, color: '#0F0', stroke: 1 }).addTo(points);
+        L.circle(ev.latlng, { radius: 200, color: circle_color, stroke: 1 }).addTo(points);
         // Center dot.
-        L.circleMarker(ev.latlng, { radius: 20, color: '#0F0', stroke: 0, fillOpacity: 1 }).addTo(points);
+        L.circleMarker(ev.latlng, { radius: 20, color: circle_color, stroke: 0, fillOpacity: 1 }).addTo(points);
     });
 
     // Clear all circles button.
     L.easyButton('fa-times-circle-o', function( ) {
         points.clearLayers();
+    }).addTo(map);
+
+    // Circle color toggle button.
+    L.easyButton({
+        id: 'color-toggle',
+        states: [{
+            stateName: 'near',
+            icon: 'fa-dot-circle-o',
+            title: "Create green circles",
+            onClick: function( button ) {
+                circle_color = '#F00';
+                button.state('far');
+            }
+        }, {
+            stateName: 'far',
+            icon: 'fa-dot-circle-o',
+            title: "Create red circles",
+            onClick: function( button ) {
+                circle_color = '#0F0';
+                button.state('near');
+            }
+        }]
     }).addTo(map);
     </script>
 </body></html>
