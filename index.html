@@ -15,13 +15,32 @@
     <!-- Leaflet Locate Control -->
     <link rel="stylesheet" href="//unpkg.com/leaflet.locatecontrol@0.55.0/dist/L.Control.Locate.min.css" />
     <script src="//unpkg.com/leaflet.locatecontrol@0.55.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <!-- Leaflet Modal -->
+    <link rel="stylesheet" href="//unpkg.com/leaflet-modal@0.1.3/dist/leaflet.modal.min.css" />
+    <script src="//unpkg.com/leaflet-modal@0.1.3/dist/Leaflet.Modal.min.js"></script>
 
     <style type="text/css">
-        html, body, #map { margin: 0; padding: 0; width: 100vw; height: 100vh; }
+        html, body, #map {
+            margin: 0;
+            padding: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            font-size: 12pt;
+            line-height: 1.25em;
+        }
+
+        #about-dialog { display: none; }
+
+        .modal-content #about-dialog { display: block; }
+
+        .modal-content h1 { text-align: center; }
 
         .state-clear,
         .state-far { color: #F00; }
         .state-near { color: #0F0; }
+        .state-about { color: #00F; }
 
         /* Make the Easy Button buttons bigger so you can easily hit them on tiny phones. */
         .easy-button-container .easy-button-button {
@@ -33,6 +52,27 @@
     </style>
 </head><body>
     <div id="map"></div>
+    <div id="about-dialog">
+        <h1>Pok&eacute;Traq</h1>
+        <p>Click on the map to place different colored circles to help
+           narrow down the possible location of whatever 'mon you're hunting.</p>
+
+        <hr />
+
+        <h2>Buttons</h2><ul>
+            <li><span class="fa fa-remove state-clear"></span> Remove all circles.</li>
+            <li><span class="fa fa-dot-circle-o state-near"></span> /
+                <span class="fa fa-dot-circle-o state-far"></span> Change circle color.</li>
+        </ul>
+
+        <hr />
+
+        <p>If you like this app, please consider
+           <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=2UAG73LMY5LE2">making a donation</a>
+           so I can buy some bag upgrades. :)</p>
+        <p><a target="_blank" href="https://github.com/ZDBiohazard/PokeTraq">This app is open-source</a>,
+           in case you want to contribute.</p>
+    </div>
     <script>
     // Create a Leaflet map using OpenStreetMap data.
     var map = L.map('map', { center: [35.377, -119.008], zoom: 16, layers: [
@@ -105,5 +145,19 @@
             }]
         }),
     ], { position: 'topright' }).addTo(map);
+
+    // About dialog.
+    L.easyButton({
+        id: 'about',
+        position: 'bottomleft',
+        states: [{
+            stateName: 'about',
+            icon: 'fa-info',
+            title: 'About this app',
+            onClick: function( button ) {
+                map.openModal({ content: document.getElementById('about-dialog').outerHTML });
+            }
+        }]
+    }).addTo(map);
     </script>
 </body></html>
