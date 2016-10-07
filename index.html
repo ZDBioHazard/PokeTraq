@@ -41,6 +41,7 @@
         .state-far { color: #F00; }
         .state-near { color: #0F0; }
         .state-about { color: #00F; }
+        .state-place { color: #00F; }
 
         /* Make the Easy Button buttons bigger so you can easily hit them on tiny phones. */
         .easy-button-container .easy-button-button {
@@ -63,6 +64,7 @@
             <li><span class="fa fa-remove state-clear"></span> Remove all circles.</li>
             <li><span class="fa fa-dot-circle-o state-near"></span> /
                 <span class="fa fa-dot-circle-o state-far"></span> Change circle color.</li>
+            <li><span class="fa fa-arrow-circle-o-down state-place"></span> Place a circle at your location.</li>
         </ul>
 
         <hr />
@@ -141,6 +143,22 @@
                 onClick: function( button ) {
                     circle_color = '#0F0';
                     button.state('near');
+                }
+            }]
+        }),
+
+        // Place a circle at your current location.
+        L.easyButton({
+            id: 'place-here',
+            states: [{
+                stateName: 'place',
+                icon: 'fa-arrow-circle-o-down',
+                title: "Place a circle at your location",
+                onClick: function( ) {
+                    if ( me.getLayers().length < 1 ) {
+                        return;
+                    }
+                    map.fire('click', { latlng: me.getLayers()[0].getLatLng() });
                 }
             }]
         }),
