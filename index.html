@@ -19,6 +19,7 @@
     <style type="text/css">
         html, body, #map { margin: 0; padding: 0; width: 100vw; height: 100vh; }
 
+        .state-clear,
         .state-far { color: #F00; }
         .state-near { color: #0F0; }
     </style>
@@ -60,8 +61,16 @@
     });
 
     // Clear all circles button.
-    L.easyButton('fa-times-circle-o', function( ) {
-        points.clearLayers();
+    L.easyButton({
+        id: 'clear-all',
+        states: [{
+            stateName: 'clear',
+            icon: 'fa-times-circle-o',
+            title: "Clear all placed circles",
+            onClick: function( ) {
+                points.clearLayers();
+            }
+        }]
     }).addTo(map);
 
     // Circle color toggle button.
