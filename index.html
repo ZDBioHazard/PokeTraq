@@ -28,10 +28,23 @@
             attribution: 'Map by <a href="http://openstreetmap.org">OpenStreetMap</a>',
             minZoom: 5, maxZoom: 17 })] });
     var points = L.layerGroup().addTo(map);
+    var me = L.layerGroup().addTo(map);
 
     // Automatically find the user's location on startup.
-    L.control.locate({ setView: 'untilPan', icon: 'fa fa-crosshairs', drawMarker: false,
+    L.control.locate({ setView: 'untilPan', icon: 'fa fa-crosshairs',
+                       drawMarker: false, drawCircle: false,
                        locateOptions: { maxZoom: 16 }}).addTo(map).start();
+    map.on('locationfound', function( ev ) {
+        me.clearLayers();
+        // Location accuracy circle.
+        L.circle(ev.latlng, { radius: ev.accuracy / 2, stroke: 0, color: '#FFF' }).addTo(me);
+        // Sightings range circle.
+        L.circle(ev.latlng, { radius: 200, color: '#08F', stroke: 0 }).addTo(me);
+        // Visible Pokemon circle.
+        L.circle(ev.latlng, { radius: 70, color: '#F80', stroke: 0 }).addTo(me);
+        // Location dot.
+        L.circleMarker(ev.latlng, { radius: 6, stroke: 0, fillOpacity: 1, color: "#FFF" }).addTo(me);
+    });
 
     // Create circles when the map is clicked on.
     map.on('click', function( ev ) {
