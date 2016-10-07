@@ -60,39 +60,42 @@
         L.circleMarker(ev.latlng, { radius: 20, color: circle_color, stroke: 0, fillOpacity: 1 }).addTo(points);
     });
 
-    // Clear all circles button.
-    L.easyButton({
-        id: 'clear-all',
-        states: [{
-            stateName: 'clear',
-            icon: 'fa-times-circle-o',
-            title: "Clear all placed circles",
-            onClick: function( ) {
-                points.clearLayers();
-            }
-        }]
-    }).addTo(map);
+    // Circle management controls.
+    L.easyBar([
+        // Clear all circles button.
+        L.easyButton({
+            id: 'clear-all',
+            states: [{
+                stateName: 'clear',
+                icon: 'fa-times-circle-o',
+                title: "Clear all placed circles",
+                onClick: function( ) {
+                    points.clearLayers();
+                }
+            }]
+        }),
 
-    // Circle color toggle button.
-    L.easyButton({
-        id: 'color-toggle',
-        states: [{
-            stateName: 'near',
-            icon: 'fa-dot-circle-o',
-            title: "Create green circles",
-            onClick: function( button ) {
-                circle_color = '#F00';
-                button.state('far');
-            }
-        }, {
-            stateName: 'far',
-            icon: 'fa-dot-circle-o',
-            title: "Create red circles",
-            onClick: function( button ) {
-                circle_color = '#0F0';
-                button.state('near');
-            }
-        }]
-    }).addTo(map);
+        // Circle color toggle button.
+        L.easyButton({
+            id: 'color-toggle',
+            states: [{
+                stateName: 'near',
+                icon: 'fa-dot-circle-o',
+                title: "Create green circles",
+                onClick: function( button ) {
+                    circle_color = '#F00';
+                    button.state('far');
+                }
+            }, {
+                stateName: 'far',
+                icon: 'fa-dot-circle-o',
+                title: "Create red circles",
+                onClick: function( button ) {
+                    circle_color = '#0F0';
+                    button.state('near');
+                }
+            }]
+        }),
+    ], { position: 'topright' }).addTo(map);
     </script>
 </body></html>
