@@ -21,5 +21,14 @@
 
     // Automatically find the user's location on startup.
     map.locate({ setView: true, maxZoom: 16 });
+
+    // Create circles when the map is clicked on.
+    map.on('click', function( ev ) {
+        // TODO - Remove circles when clicking on the inner circle.
+        // Sightings range.
+        L.circle(ev.latlng, { radius: 200, color: '#0F0', stroke: 1 }).addTo(map);
+        // Center dot.
+        L.circleMarker(ev.latlng, { radius: 20, color: '#0F0', stroke: 0, fillOpacity: 1 }).addTo(map);
+    });
     </script>
 </body></html>
