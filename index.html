@@ -39,7 +39,6 @@
 
         .modal-content h1 { text-align: center; }
 
-        .state-clear,
         .state-far { color: #F00; }
         .state-near { color: #0F0; }
         .state-about { color: #00F; }
@@ -63,9 +62,9 @@
         <hr />
 
         <ul>
-            <li>Green markers (<span class="fa fa-dot-circle-o state-near"></span>)
+            <li>Green markers (<span class="fa fa-check-circle-o state-near"></span>)
                 signify locations something appears on the "sightings" list.</li>
-            <li>Red markers (<span class="fa fa-dot-circle-o state-far"></span>)
+            <li>Red markers (<span class="fa fa-times-circle-o state-far"></span>)
                 signify locations something is not in the "sightings" list.</li>
             <li>You can click on a placed marker to remove it.</li>
         </ul>
@@ -76,9 +75,9 @@
         <hr />
 
         <h2>Buttons</h2><ul>
-            <li><span class="fa fa-times-circle-o state-clear"></span> Remove all markers.</li>
-            <li><span class="fa fa-dot-circle-o state-near"></span> /
-                <span class="fa fa-dot-circle-o state-far"></span> Change marker type.</li>
+            <li><span class="fa fa-trash state-clear"></span> Remove all markers.</li>
+            <li><span class="fa fa-check-circle-o state-near"></span> /
+                <span class="fa fa-times-circle-o state-far"></span> Change marker type.</li>
             <li><span class="fa fa-arrow-circle-o-down state-place"></span> Place a marker at your location.</li>
         </ul>
 
@@ -199,7 +198,7 @@
             id: 'clear-all',
             states: [{
                 stateName: 'clear',
-                icon: 'fa-times-circle-o',
+                icon: 'fa-trash-o',
                 title: "Clear all placed markers",
                 onClick: function( ) {
                     points.near.clearLayers();
@@ -214,7 +213,7 @@
             id: 'color-toggle',
             states: [{
                 stateName: 'near',
-                icon: 'fa-dot-circle-o',
+                icon: 'fa-check-circle-o',
                 title: "Create green markers",
                 onClick: function( button ) {
                     marker_mode = 'near';
@@ -222,7 +221,7 @@
                 }
             }, {
                 stateName: 'far',
-                icon: 'fa-dot-circle-o',
+                icon: 'fa-times-circle-o',
                 title: "Create red markers",
                 onClick: function( button ) {
                     marker_mode = 'far';
@@ -254,7 +253,7 @@
         position: 'bottomleft',
         states: [{
             stateName: 'about',
-            icon: 'fa-info',
+            icon: 'fa-question-circle-o',
             title: 'About this app',
             onClick: function( button ) {
                 map.openModal({ content: document.getElementById('about-dialog').outerHTML });
