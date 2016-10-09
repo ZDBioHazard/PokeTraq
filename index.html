@@ -39,10 +39,10 @@
 
         .modal-content h1 { text-align: center; }
 
-        .state-far { color: #F00; }
-        .state-near { color: #0F0; }
-        .state-about { color: #00F; }
-        .state-place { color: #00F; }
+        .state-far { color: #C00; }
+        .state-near { color: #0A0; }
+        .state-about { color: #00A; }
+        .state-place { color: #00A; }
 
         /* Make the Easy Button buttons bigger so you can easily hit them on tiny phones. */
         .easy-button-container .easy-button-button {
@@ -181,10 +181,10 @@
 
         // Add the marker to a group.
         if ( marker_mode == 'near' ) {
-            marker.setStyle({ color: '#0F0' });
+            marker.setStyle({ color: '#0A0' });
             points.near.addLayer(marker);
         } else if ( marker_mode == 'far' ) {
-            marker.setStyle({ color: '#F00' });
+            marker.setStyle({ color: '#C00' });
             points.far.addLayer(marker);
         }
 
