@@ -36,7 +36,7 @@ function update_search_area( ) {
 
     // Remove the existing area from the map.
     area.clearLayers();
-    zone_warning.remove();
+    buttons.zone_warning.remove();
 
     // Nothing will be visible if there are no near locations, so exit now.
     if ( near.length == 0 ) {
@@ -55,7 +55,7 @@ function update_search_area( ) {
             if ( intersected != undefined ) {
                 combined = intersected;
             } else {
-                zone_warning.addTo(map);
+                buttons.zone_warning.addTo(map);
             }
         }
         // Remove the visible area from near scans,
@@ -102,10 +102,10 @@ map.on('click', function( ev ) {
     update_search_area();
 });
 
-// Circle management controls.
-L.easyBar([
+// Button controls.
+var buttons = {
     // Clear all circles button.
-    L.easyButton({
+    clear_all: L.easyButton({
         id: 'clear-all',
         states: [{
             stateName: 'clear',
@@ -115,13 +115,13 @@ L.easyBar([
                 points.near.clearLayers();
                 points.far.clearLayers();
                 area.clearLayers();
-                zone_warning.remove();
+                buttons.zone_warning.remove();
             }
         }]
     }),
 
     // Circle color toggle button.
-    L.easyButton({
+    color_toggle: L.easyButton({
         id: 'color-toggle',
         states: [{
             stateName: 'near',
@@ -143,7 +143,7 @@ L.easyBar([
     }),
 
     // Place a circle at your current location.
-    L.easyButton({
+    place_here: L.easyButton({
         id: 'place-here',
         states: [{
             stateName: 'place',
@@ -157,32 +157,37 @@ L.easyBar([
             }
         }]
     }),
+
+    // About dialog.
+    about: L.easyButton({
+        id: 'about',
+        states: [{
+            stateName: 'about',
+            icon: 'fa-question-circle-o',
+            title: 'About this app',
+            onClick: function( button ) {
+                map.openModal({ content: document.getElementById('about-dialog').innerHTML });
+            }
+        }]
+    }),
+
+    // Multiple spawn warning.
+    zone_warning: L.easyButton({
+        id: 'zone-warning',
+        states: [{
+            stateName: 'zone-warning',
+            icon: 'fa-exclamation',
+            title: 'Warning: Multiple spawn points',
+            onClick: function( button ) {
+                map.openModal({ content: document.getElementById('zone-warning-dialog').outerHTML });
+            }
+        }]
+    }),
+};
+
+// Add buttons to the map.
+L.easyBar([ // Marker controls go in a group.
+    buttons.clear_all, buttons.color_toggle, buttons.place_here
 ], { position: 'topright' }).addTo(map);
-
-// About dialog.
-L.easyButton({
-    id: 'about',
-    position: 'bottomleft',
-    states: [{
-        stateName: 'about',
-        icon: 'fa-question-circle-o',
-        title: 'About this app',
-        onClick: function( button ) {
-            map.openModal({ content: document.getElementById('about-dialog').innerHTML });
-        }
-    }]
-}).addTo(map);
-
-// Multiple spawn warning.
-var zone_warning = L.easyButton({
-    id: 'zone-warning',
-    position: 'bottomright',
-    states: [{
-        stateName: 'zone-warning',
-        icon: 'fa-exclamation',
-        title: 'Warning: Multiple spawn points',
-        onClick: function( button ) {
-            map.openModal({ content: document.getElementById('zone-warning-dialog').outerHTML });
-        }
-    }]
-});
+buttons.about.setPosition('bottomleft').addTo(map);
+buttons.zone_warning.setPosition('bottomright').remove(); // Added when needed.
