@@ -17,6 +17,13 @@ html, body, #map {
 .modal-content h1,
 #zone-warning-dialog { text-align: center; }
 
+.modal-content img.demo {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    border: 1px solid black;
+}
+
 .state-far { color: #C00; }
 .state-near { color: #0A0; }
 .state-about { color: #00A; }
