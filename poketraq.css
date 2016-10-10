@@ -24,8 +24,19 @@ html, body, #map {
     border: 1px solid black;
 }
 
-.state-far { color: #C00; }
-.state-near { color: #0A0; }
+/* Use FontAwesome icons as map markers. */
+.leaflet-marker-icon.fa {
+    font-size: 0.5in !important;
+    margin: -0.25in 0 0 -0.25in !important;
+    width: 0.5in !important;
+    height: 0.5in !important;
+    line-height: 0.5in !important;
+    text-align: center !important;
+}
+
+/* Icon colors. */
+.fa-times-circle-o { color: #C00; }
+.fa-check-circle-o { color: #0A0; }
 .state-about { color: #00A; }
 .state-place { color: #00A; }
 .state-zone-warning { color: #A20; }

@@ -74,7 +74,7 @@ function update_search_area( ) {
 
 // Create circles when the map is clicked on.
 map.on('click', function( ev ) {
-    marker = L.circleMarker(ev.latlng, { radius: 20, stroke: 0, fillOpacity: 1 });
+    marker = L.marker(ev.latlng);
 
     // Remove markers when they are clicked on.
     marker.on('click', function ( ev ) {
@@ -92,10 +92,10 @@ map.on('click', function( ev ) {
 
     // Add the marker to a group.
     if ( marker_mode == 'near' ) {
-        marker.setStyle({ color: '#0A0' });
+        marker.setIcon(L.divIcon({ className: 'fa fa-check-circle-o' }));
         points.near.addLayer(marker);
     } else if ( marker_mode == 'far' ) {
-        marker.setStyle({ color: '#C00' });
+        marker.setIcon(L.divIcon({ className: 'fa fa-times-circle-o' }));
         points.far.addLayer(marker);
     }
 
