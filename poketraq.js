@@ -36,6 +36,7 @@ function update_search_area( ) {
 
     // Remove the existing area from the map.
     area.clearLayers();
+    zone_warning.remove();
 
     // Nothing will be visible if there are no near locations, so exit now.
     if ( near.length == 0 ) {
@@ -53,6 +54,8 @@ function update_search_area( ) {
             var intersected = turf.intersect(combined, circle);
             if ( intersected != undefined ) {
                 combined = intersected;
+            } else {
+                zone_warning.addTo(map);
             }
         }
         // Remove the visible area from near scans,
@@ -112,6 +115,7 @@ L.easyBar([
                 points.near.clearLayers();
                 points.far.clearLayers();
                 area.clearLayers();
+                zone_warning.remove();
             }
         }]
     }),
@@ -168,3 +172,17 @@ L.easyButton({
         }
     }]
 }).addTo(map);
+
+// Multiple spawn warning.
+var zone_warning = L.easyButton({
+    id: 'zone-warning',
+    position: 'bottomright',
+    states: [{
+        stateName: 'zone-warning',
+        icon: 'fa-exclamation',
+        title: 'Warning: Multiple spawn points',
+        onClick: function( button ) {
+            map.openModal({ content: document.getElementById('zone-warning-dialog').outerHTML });
+        }
+    }]
+});

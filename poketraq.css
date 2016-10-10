@@ -9,16 +9,19 @@ html, body, #map {
     line-height: 1.25em;
 }
 
-#about-dialog { display: none; }
+#about-dialog, #zone-warning-dialog { display: none; }
 
-.modal-content #about-dialog { display: block; }
+.modal-content #about-dialog,
+.modal-content #zone-warning-dialog { display: block; }
 
-.modal-content h1 { text-align: center; }
+.modal-content h1,
+#zone-warning-dialog { text-align: center; }
 
 .state-far { color: #C00; }
 .state-near { color: #0A0; }
 .state-about { color: #00A; }
 .state-place { color: #00A; }
+.state-zone-warning { color: #A20; }
 
 /* Make the Easy Button buttons bigger so
  * you can easily hit them on tiny phones. */
