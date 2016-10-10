@@ -116,6 +116,7 @@ var buttons = {
                 points.far.clearLayers();
                 area.clearLayers();
                 buttons.zone_warning.remove();
+                buttons.color_toggle.state('near');
             }
         }]
     }),
