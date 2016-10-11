@@ -1,5 +1,5 @@
 // Create a Leaflet map using OpenStreetMap data.
-var map = L.map('map', { center: [35.377, -119.008], zoom: 16, layers: [
+var map = L.map('map', { center: [35.377, -119.008], zoom: 16, doubleClickZoom: false, layers: [
     L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map by <a href="http://openstreetmap.org">OpenStreetMap</a>',
         minZoom: 5, maxZoom: 17 })] });
