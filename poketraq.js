@@ -116,29 +116,41 @@ var buttons = {
                 points.far.clearLayers();
                 area.clearLayers();
                 buttons.zone_warning.remove();
-                buttons.color_toggle.state('near');
+
+                // Pretend to press the green mode button.
+                marker_mode = 'near';
+                buttons.mode_near.disable();
+                buttons.mode_far.enable();
             }
         }]
     }),
 
-    // Circle color toggle button.
-    color_toggle: L.easyButton({
-        id: 'color-toggle',
+    // Near marker mode button.
+    mode_near: L.easyButton({
+        id: 'mode-near',
         states: [{
             stateName: 'near',
             icon: 'fa-check-circle-o',
             title: "Create green markers",
             onClick: function( button ) {
                 marker_mode = 'near';
-                button.state('far');
+                buttons.mode_far.enable();
+                button.disable();
             }
-        }, {
+        }]
+    }),
+
+    // Far marker mode button.
+    mode_far: L.easyButton({
+        id: 'mode-far',
+        states: [{
             stateName: 'far',
             icon: 'fa-times-circle-o',
             title: "Create red markers",
             onClick: function( button ) {
                 marker_mode = 'far';
-                button.state('near');
+                buttons.mode_near.enable();
+                button.disable();
             }
         }]
     }),
@@ -187,8 +199,9 @@ var buttons = {
 };
 
 // Add buttons to the map.
-L.easyBar([ // Marker controls go in a group.
-    buttons.clear_all, buttons.color_toggle, buttons.place_here
-], { position: 'topright' }).addTo(map);
+buttons.clear_all.setPosition('topright').addTo(map);
+L.easyBar([buttons.mode_near, buttons.mode_far], { position: 'topright' }).addTo(map);
+buttons.mode_near.disable();
+buttons.place_here.setPosition('topright').addTo(map);
 buttons.about.setPosition('bottomleft').addTo(map);
 buttons.zone_warning.setPosition('bottomright').remove(); // Added when needed.

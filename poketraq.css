@@ -49,3 +49,7 @@ html, body, #map {
     font-size: 0.4in;
     padding: 0.04in;
 }
+
+.easy-button-button.disabled { opacity: 1.0 !important; }
+.easy-button-button.near-active.disabled { background-color: #AFA; }
+.easy-button-button.far-active.disabled { background-color: #FBB; }
