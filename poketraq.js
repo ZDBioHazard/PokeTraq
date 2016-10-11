@@ -102,6 +102,12 @@ map.on('click', function( ev ) {
     update_search_area();
 });
 
+// Dialog windows.
+var dialogs = {
+    about: { content: document.getElementById('about-dialog').outerHTML, },
+    zone_warning: { content: document.getElementById('zone-warning-dialog').outerHTML, },
+};
+
 // Button controls.
 var buttons = {
     // Clear all circles button.
@@ -178,9 +184,7 @@ var buttons = {
             stateName: 'about',
             icon: 'fa-question-circle-o',
             title: 'About this app',
-            onClick: function( button ) {
-                map.openModal({ content: document.getElementById('about-dialog').innerHTML });
-            }
+            onClick: function( ) { map.openModal(dialogs.about); },
         }]
     }),
 
@@ -191,9 +195,7 @@ var buttons = {
             stateName: 'zone-warning',
             icon: 'fa-exclamation',
             title: 'Warning: Multiple spawn points',
-            onClick: function( button ) {
-                map.openModal({ content: document.getElementById('zone-warning-dialog').outerHTML });
-            }
+            onClick: function( ) { map.openModal(dialogs.zone_warning); },
         }]
     }),
 };
