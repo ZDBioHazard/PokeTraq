@@ -1,18 +1,39 @@
-PokeTraq
-========
+Pok&eacute;Traq - Manual Triangulation Helper
+=============================================
 
-PokeTraq is just a super-simple web app to help you
-track down Pokemon you see in your sightings list.
+Pok&eacute;Traq is a super-simple web app to help you
+track down Pok&eacute;mon you see in your sightings list.
 
-## How To Track Down Pokemon
+It is hosted at http://poketraq.com
 
-Just click/tap on a location to set a "out of range" red circle or "nearby"
-green circle markers on the map to notate locations where you see or don't
-see the target on the sightings list.
+## How To Track Down Pok&eacute;mon
 
-You can observe how the circles overlap to determine where the target could
-be. For example, if a green circle and red circle overlap, then you know the
-target is in the area covered by the green circle, minus the red circle. If
-there are multiple green circles, then you know the target is in the area
-where they all overlap. Thus, the target area is the intersection of all
-green circles minus the union of all red circles.
+Click on the map to place markers for "nearby" and "too far" points to
+help narrow down the possible location of whatever Pok&eacute;mon you're
+hunting.
+
+![Nifty Demo](./demo.gif)
+
+* Place green check markers at locations where the target appears on the
+  "sightings" list.
+* Place red "X" markers at locations where the target does not appear on the
+  "sightings" list.
+* You can click on a placed marker to remove it.
+
+A blue area will be created around the locations where the target
+Pok&eacute;mon could be, based on your markers.
+
+## Development
+
+This is just a simple web app that runs in a single page. It uses
+[Leaflet](http://leafletjs.com) and a bunch of plugins to provide maps,
+and uses [Turf.js](http://turfjs.org) to calculate the search areas.
+
+The whole app runs out of a single page and has no back-end. You can run
+it from a `file://` URL if you want.
+
+## Contributing
+
+If you like this app, please consider
+[making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UAG73LMY5LE2)
+so I can buy some bag slot upgrades. :)
