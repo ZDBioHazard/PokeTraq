@@ -9,6 +9,7 @@ var points = {
 };
 var area = L.layerGroup().addTo(map);
 var me = L.layerGroup().addTo(map);
+var circles = L.layerGroup().addTo(map);
 var marker_mode = 'near';
 
 // Automatically find the user's location on startup.
@@ -75,9 +76,11 @@ function update_search_area( ) {
 // Create circles when the map is clicked on.
 map.on('click', function( ev ) {
     marker = L.marker(ev.latlng);
+    marker.circle = L.circle(ev.latlng, { radius: 200, stroke: 0 }).addTo(circles);
 
     // Remove markers when they are clicked on.
     marker.on('click', function ( ev ) {
+        circles.removeLayer(ev.target.circle);
         if ( points.near.hasLayer(ev.target) == true ) {
             points.near.removeLayer(ev.target);
         } else if ( points.far.hasLayer(ev.target) == true ) {
@@ -93,9 +96,11 @@ map.on('click', function( ev ) {
     // Add the marker to a group.
     if ( marker_mode == 'near' ) {
         marker.setIcon(L.divIcon({ className: 'fa fa-check-circle-o' }));
+        marker.circle.setStyle({ color: '#0F0', fillOpacity: 0.075 });
         points.near.addLayer(marker);
     } else if ( marker_mode == 'far' ) {
         marker.setIcon(L.divIcon({ className: 'fa fa-times-circle-o' }));
+        marker.circle.setStyle({ color: '#F00', fillOpacity: 0.05 });
         points.far.addLayer(marker);
     }
 
@@ -121,6 +126,7 @@ var buttons = {
                 points.near.clearLayers();
                 points.far.clearLayers();
                 area.clearLayers();
+                circles.clearLayers();
                 buttons.zone_warning.remove();
 
                 // Pretend to press the green mode button.
