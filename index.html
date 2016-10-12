@@ -28,16 +28,18 @@
     <div id="map"></div>
     <div id="about-dialog">
         <h1>Pok&eacute;Traq</h1>
-        <p>Click on the map to place markers that signify "nearby" and "too far" to
-           help narrow down the possible location of whatever \'mon you\'re hunting.</p>
+        <p class="subtitle">A manual triangulation helper for Pok&eacute;mon GO</p>
+
+        <p>Click on the map to place markers for "nearby" and "too far" points to help
+           narrow down the possible location of whatever Pok&eacute;mon you're hunting.</p>
 
         <img class="demo" src="demo.gif" />
 
         <ul>
-            <li>Green markers (<span class="fa fa-check-circle-o state-near"></span>)
-                signify locations something appears on the "sightings" list.</li>
-            <li>Red markers (<span class="fa fa-times-circle-o state-far"></span>)
-                signify locations something is not in the "sightings" list.</li>
+            <li>Place green check markers (<span class="fa fa-check-circle-o"></span>)
+                at locations where the target appears on the "sightings" list.</li>
+            <li>Place red "X" markers (<span class="fa fa-times-circle-o"></span>)
+                at locations where the target does not appear on the "sightings" list.</li>
             <li>You can click on a placed marker to remove it.</li>
         </ul>
 
@@ -47,10 +49,12 @@
         <hr />
 
         <h2>Buttons</h2><ul>
-            <li><span class="fa fa-trash state-clear"></span> Remove all markers.</li>
-            <li><span class="fa fa-check-circle-o state-near"></span> /
-                <span class="fa fa-times-circle-o state-far"></span> Change marker type.</li>
-            <li><span class="fa fa-arrow-circle-o-down state-place"></span> Place a marker at your location.</li>
+            <li><span class="fa fa-trash-o"></span> Remove all markers.</li>
+            <li><span class="fa fa-check-circle-o"></span> Place green markers.</li>
+            <li><span class="fa fa-times-circle-o"></span> Place red markers.</li>
+            <li><span class="fa fa-arrow-circle-o-down"></span> Place a marker at your location.</li>
+            <li><span class="fa fa-crosshairs"></span> Find and track your location.</li>
+            <li><span class="fa fa-question-circle-o"></span> Open this help dialog.</li>
         </ul>
 
         <hr />

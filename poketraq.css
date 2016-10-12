@@ -9,14 +9,23 @@ html, body, #map {
     line-height: 1.25em;
 }
 
+/* About dialog. */
 #about-dialog, #zone-warning-dialog { display: none; }
 
 .modal-content #about-dialog,
 .modal-content #zone-warning-dialog { display: block; }
 
 .modal-content h1,
-#zone-warning-dialog { text-align: center; }
-
+#zone-warning-dialog {
+    text-align: center;
+    margin-bottom: 0.15em;
+}
+.modal-content p.subtitle {
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid black;
+    padding: 0 1em;
+}
 .modal-content img.demo {
     display: block;
     margin: auto;
@@ -37,9 +46,9 @@ html, body, #map {
 /* Icon colors. */
 .fa-times-circle-o { color: #C00; }
 .fa-check-circle-o { color: #0A0; }
-.state-about { color: #00A; }
-.state-place { color: #00A; }
-.state-zone-warning { color: #A20; }
+.fa-question-circle-o { color: #00A; }
+.fa-arrow-circle-o-down { color: #00A; }
+.fa-exclamation { color: #A20; }
 
 /* Make the Easy Button buttons bigger so
  * you can easily hit them on tiny phones. */
