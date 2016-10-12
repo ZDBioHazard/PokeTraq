@@ -20,14 +20,14 @@ map.on('locationfound', function( ev ) {
     var style = { color: '#FFF', stroke: 0, fillOpacity: 0.1 };
     me.clearLayers();
 
-    // Location accuracy circle.
-    L.circle(ev.latlng, ev.accuracy / 2, style).addTo(me);
-    // Sightings range circle.
-    L.circle(ev.latlng, 200, style).setStyle({ color: '#08F' }).addTo(me);
-    // Visible Pokemon circle.
-    L.circle(ev.latlng, 70, style).setStyle({ color: '#F80' }).addTo(me);
     // Location dot.
-    L.circleMarker(ev.latlng, style).setStyle({ radius: 6, fillOpacity: 1 }).addTo(me);
+    L.circleMarker(ev.latlng, style).setStyle({ radius: 6, fillOpacity: 1 }).addTo(me).bringToBack();
+    // Visible Pokemon circle.
+    L.circle(ev.latlng, 70, style).setStyle({ color: '#F80' }).addTo(me).bringToBack();
+    // Sightings range circle.
+    L.circle(ev.latlng, 200, style).setStyle({ color: '#08F' }).addTo(me).bringToBack();
+    // Location accuracy circle.
+    L.circle(ev.latlng, ev.accuracy / 2, style).addTo(me).bringToBack();
 });
 
 // Go through the markers and build an area map.
@@ -72,7 +72,7 @@ function update_search_area( ) {
     }
 
     // Add the calculated area to the map.
-    L.geoJSON(combined).addTo(area);
+    L.geoJSON(combined).addTo(area).bringToFront();
 }
 
 // Create circles when the map is clicked on.
