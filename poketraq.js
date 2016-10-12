@@ -17,15 +17,17 @@ L.control.locate({ setView: 'untilPan', icon: 'fa fa-crosshairs',
                    drawMarker: false, drawCircle: false,
                    locateOptions: { maxZoom: 16 }}).addTo(map).start();
 map.on('locationfound', function( ev ) {
+    var style = { color: '#FFF', stroke: 0, fillOpacity: 0.1 };
     me.clearLayers();
+
     // Location accuracy circle.
-    L.circle(ev.latlng, { radius: ev.accuracy / 2, stroke: 0, color: '#FFF' }).addTo(me);
+    L.circle(ev.latlng, ev.accuracy / 2, style).addTo(me);
     // Sightings range circle.
-    L.circle(ev.latlng, { radius: 200, color: '#08F', stroke: 0 }).addTo(me);
+    L.circle(ev.latlng, 200, style).setStyle({ color: '#08F' }).addTo(me);
     // Visible Pokemon circle.
-    L.circle(ev.latlng, { radius: 70, color: '#F80', stroke: 0 }).addTo(me);
+    L.circle(ev.latlng, 70, style).setStyle({ color: '#F80' }).addTo(me);
     // Location dot.
-    L.circleMarker(ev.latlng, { radius: 6, stroke: 0, fillOpacity: 1, color: "#FFF" }).addTo(me);
+    L.circleMarker(ev.latlng, style).setStyle({ radius: 6, fillOpacity: 1 }).addTo(me);
 });
 
 // Go through the markers and build an area map.
