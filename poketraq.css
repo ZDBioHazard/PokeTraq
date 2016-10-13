@@ -59,6 +59,11 @@ html, body, #map {
     padding: 0.04in;
 }
 
-.easy-button-button.disabled { opacity: 1.0 !important; }
+/* Color disabled buttons to make them
+ * look like they are activated. */
+.easy-button-button.disabled {
+    pointer-events: auto !important;
+    opacity: 1.0 !important;
+}
 .easy-button-button.near-active.disabled { background-color: #AFA; }
 .easy-button-button.far-active.disabled { background-color: #FBB; }
