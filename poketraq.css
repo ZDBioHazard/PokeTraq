@@ -50,8 +50,13 @@ html, body, #map {
 .fa-arrow-circle-o-down { color: #00A; }
 .fa-exclamation { color: #A20; }
 
-/* Make the Easy Button buttons bigger so
- * you can easily hit them on tiny phones. */
+/* Make some buttons bigger so they can
+ * be more  easily pressed on tiny phones. */
+.modal .close {
+    color: #A00;
+    font-size: 32px;
+    opacity: 1.0;
+}
 .easy-button-container .easy-button-button {
     min-width: 0.5in;
     min-height: 0.5in;
