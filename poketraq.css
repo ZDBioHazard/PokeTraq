@@ -8,6 +8,7 @@ html, body, #map {
     font-size: 12pt;
     line-height: 1.25em;
 }
+a { text-decoration: none; }
 
 /* About dialog. */
 #about-dialog, #zone-warning-dialog { display: none; }
@@ -31,6 +32,24 @@ html, body, #map {
     margin: auto;
     max-width: 100%;
     border: 1px solid black;
+}
+.about-bottom p {
+    text-align: center;
+}
+#donate {
+    background: linear-gradient(to bottom, #FD9 0%,#FB1 100%);
+    border: 2px outset #FA2;
+    border-radius: 8px;
+
+    display: table;
+    margin: auto;
+    padding: 0.5em 1em;
+
+    font-weight: bold;
+    font-style: italic;
+    color: #369;
+
+    cursor: pointer;
 }
 
 /* Use FontAwesome icons as map markers. */

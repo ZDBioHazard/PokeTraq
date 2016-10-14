@@ -218,7 +218,7 @@ buttons.zone_warning.setPosition('bottomright').remove(); // Added when needed.
 
 // Open the about dialog the first time visiting. Use a number in a string
 // to check against in case we ever need to force clear the user's cookie.
-var cookie_version = '1';
+var cookie_version = '2';
 if ( Cookies.get('saw_about') != cookie_version ) {
     map.openModal(dialogs.about);
     Cookies.set('saw_about', cookie_version, { expires: 365 });
